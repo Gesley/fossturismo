@@ -21,6 +21,7 @@ export interface TermFormData {
   aceitaResponsabilidade: boolean;
   aceitaDespesas: boolean;
   aceitaIsencao: boolean;
+  consentimentoLGPD: boolean;
 
   // Federação
   isFederado: boolean;
@@ -30,6 +31,8 @@ export interface TermFormData {
   // Grupo
   dataAcesso: string;
   quantidadePessoas: number;
+  empresaSeguro: string;
+  numeroSeguro: string;
   participantes: string[];
 
   // Dados finais
@@ -46,6 +49,7 @@ export interface TermFormData {
 
   // Upload
   documentoUpload: File | null;
+  documentoDataUrl: string | null;
 }
 
 export const initialFormData: TermFormData = {
@@ -66,11 +70,14 @@ export const initialFormData: TermFormData = {
   aceitaResponsabilidade: false,
   aceitaDespesas: false,
   aceitaIsencao: false,
+  consentimentoLGPD: false,
   isFederado: false,
   numeroFederacao: "",
   ufFederacao: "",
   dataAcesso: new Date().toISOString().split("T")[0],
   quantidadePessoas: 1,
+  empresaSeguro: "",
+  numeroSeguro: "",
   participantes: [""],
   dataFinal: new Date().toISOString().split("T")[0],
   nomeResponsavel: "",
@@ -81,4 +88,5 @@ export const initialFormData: TermFormData = {
   assinaturaDataUrl: "",
   assinaturaPosterior: false,
   documentoUpload: null,
+  documentoDataUrl: null,
 };

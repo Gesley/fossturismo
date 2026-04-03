@@ -3,6 +3,7 @@ import { TermFormData } from "@/types/termForm";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Upload, ShieldCheck } from "lucide-react";
+import { Checkbox } from "@/components/ui/checkbox";
 
 interface Props {
   data: TermFormData;
@@ -23,6 +24,15 @@ const StepFinalizacao = ({ data, onChange }: Props) => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
     onChange({ documentoUpload: file });
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        onChange({ documentoDataUrl: reader.result as string });
+      };
+      reader.readAsDataURL(file);
+    } else {
+      onChange({ documentoDataUrl: null });
+    }
   };
 
   return (
@@ -103,6 +113,25 @@ const StepFinalizacao = ({ data, onChange }: Props) => {
             </a>{" "}
             para assinar digitalmente.
           </p>
+        </div>
+      </div>
+
+      {/* Consentimento LGPD */}
+      <div className="bg-card border border-border rounded-xl p-6 shadow-sm mb-6">
+        <h3 className="text-lg font-semibold text-destructive mb-4">Privacidade e Proteção de Dados (LGPD)</h3>
+        <p className="text-sm text-muted-foreground mb-4">
+          Este formulário coleta seus dados visando única e exclusivamente a elaboração e formulação do seu Termo de Responsabilidade e Assunção de Riscos em formato PDF. 
+          Os dados informados não ficarão salvos em nosso banco de dados.
+        </p>
+        <div className="flex items-start gap-3">
+          <Checkbox 
+            id="lgpd" 
+            checked={data.consentimentoLGPD} 
+            onCheckedChange={(c) => onChange({ consentimentoLGPD: !!c })} 
+          />
+          <Label htmlFor="lgpd" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 mt-1 cursor-pointer">
+            Li e concordo com a <a href="/politica-privacidade" target="_blank" className="text-primary hover:underline">Política de Privacidade</a> e autorizo o uso dos meus dados para gerar este termo.
+          </Label>
         </div>
       </div>
     </div>

@@ -78,6 +78,10 @@ const TermoPage = () => {
           toast.error("Preencha o nome e CPF do responsável.");
           return false;
         }
+        if (!formData.consentimentoLGPD) {
+          toast.error("Você deve concordar com a Política de Privacidade para continuar.");
+          return false;
+        }
         return true;
       default:
         return true;

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mountain, TreePine, Waves, Sun, ChevronDown, ChevronLeft, ChevronRight, MapPin, Compass } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -269,9 +269,19 @@ const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border">
-        <div className="max-w-6xl mx-auto text-center text-muted-foreground text-sm">
-          <p>© {new Date().getFullYear()} Fazenda Guanabara — Turismo de Aventura. Todos os direitos reservados.</p>
+      <footer className="py-12 px-4 border-t border-border">
+        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-muted-foreground text-sm">
+          <div className="flex items-center gap-2">
+            <img src={logo} alt="Fazenda Guanabara" className="w-6 h-6 grayscale opacity-60" />
+            <p>© {new Date().getFullYear()} Fazenda Guanabara</p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-x-8 gap-y-4 text-xs font-medium">
+            <Link to="/politica-privacidade" className="hover:text-primary transition-colors hover:underline">Política de Privacidade</Link>
+            <Link to="/direitos-usuario" className="hover:text-primary transition-colors hover:underline">Direitos do Titular (LGPD)</Link>
+            <span className="opacity-40">|</span>
+            <p className="opacity-60">Turismo de Aventura & Natureza</p>
+          </div>
         </div>
       </footer>
     </div>

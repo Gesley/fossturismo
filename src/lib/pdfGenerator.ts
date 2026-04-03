@@ -69,8 +69,9 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
     checkPage(6);
     doc.setFont("helvetica", "normal");
     doc.setFontSize(9);
-    doc.text(checked ? "☑" : "☐", margin + 2, y);
-    doc.text(text, margin + 8, y);
+    const mark = checked ? "[X]" : "[   ]";
+    doc.text(mark, margin + 2, y);
+    doc.text(text, margin + 12, y);
     y += 6;
   };
 
@@ -132,7 +133,21 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
   paragraph("O acesso está autorizado exclusivamente para o grupo abaixo identificado:");
   field("Data do acesso", data.dataAcesso);
   field("Quantidade de pessoas", data.quantidadePessoas.toString());
-  paragraph("Assumo total responsabilidade pelos integrantes do grupo.");
+
+  y += 2;
+  checkPage(15);
+  doc.setFont("helvetica", "bold");
+  paragraph("É OBRIGATÓRIO o SEGURO AVENTURA para todos os integrantes dos eventos que deverá ser feito pelo responsável do grupo!!");
+  doc.setFont("helvetica", "normal");
+
+  field("Empresa Seguro", data.empresaSeguro);
+  field("Número seguro", data.numeroSeguro);
+
+  y += 2;
+  checkPage(10);
+  doc.setFont("helvetica", "bold");
+  paragraph("Assumo total responsabilidade pelos integrantes deste grupo relacionados no anexo!");
+  doc.setFont("helvetica", "normal");
 
   // 5. DOS EQUIPAMENTOS
   sectionTitle("5. DOS EQUIPAMENTOS");
@@ -215,6 +230,36 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
       doc.setFontSize(9);
       doc.text(`${i + 1}. ${filtered[i]}`, margin, y);
       y += 5;
+    }
+  }
+
+  // ANEXO: Documento (RG/CPF)
+  if (data.documentoDataUrl) {
+    doc.addPage();
+    y = 20;
+    sectionTitle("ANEXO: DOCUMENTO DE IDENTIFICAÇÃO (RG/CPF)");
+    y += 10;
+    
+    try {
+      const imgProps = doc.getImageProperties(data.documentoDataUrl);
+      const ratio = imgProps.height / imgProps.width;
+      const targetW = contentW;
+      const targetH = targetW * ratio;
+      
+      const finalH = targetH > 240 ? 240 : targetH;
+      const finalW = finalH / ratio;
+      
+      doc.addImage(
+        data.documentoDataUrl, 
+        "JPEG", 
+        margin + (contentW - finalW) / 2, 
+        y, 
+        finalW, 
+        finalH
+      );
+    } catch (e) {
+      paragraph("Erro ao renderizar a imagem do documento. Certifique-se de que o arquivo é uma imagem válida.");
+      console.error("PDF Image Error:", e);
     }
   }
 

@@ -34,6 +34,25 @@ const StepGrupo = ({ data, onChange }: Props) => {
         </div>
       </div>
 
+      <div className="bg-yellow-50 dark:bg-yellow-900/20 border-l-4 border-yellow-500 p-4 font-semibold text-yellow-800 dark:text-yellow-200">
+        **É OBRIGATÓRIO o SEGURO AVENTURA para todos os integrantes dos eventos que deverá ser feito pelo responsável do grupo!!
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <Label>Empresa Seguro *</Label>
+          <Input type="text" value={data.empresaSeguro} onChange={(e) => onChange({ empresaSeguro: e.target.value })} placeholder="Nome da empresa do seguro" required />
+        </div>
+        <div>
+          <Label>Número seguro *</Label>
+          <Input type="text" value={data.numeroSeguro} onChange={(e) => onChange({ numeroSeguro: e.target.value })} placeholder="Número da apólice/seguro" required />
+        </div>
+      </div>
+
+      <div className="bg-destructive/10 dark:bg-destructive/20 border border-destructive/20 p-4 rounded-md font-semibold text-destructive">
+        Assumo total responsabilidade pelos integrantes deste grupo relacionados no anexo!
+      </div>
+
       <div className="space-y-3">
         <Label>Participantes do Grupo</Label>
         {data.participantes.map((p, i) => (
