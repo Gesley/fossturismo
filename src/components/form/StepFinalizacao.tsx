@@ -1,11 +1,8 @@
-import { useRef, useCallback } from "react";
-import SignatureCanvas from "react-signature-canvas";
+import { useRef } from "react";
 import { TermFormData } from "@/types/termForm";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Eraser, Upload } from "lucide-react";
+import { Upload, ShieldCheck } from "lucide-react";
 
 interface Props {
   data: TermFormData;
@@ -21,19 +18,7 @@ const formatCPF = (v: string) => {
 };
 
 const StepFinalizacao = ({ data, onChange }: Props) => {
-  const sigRef = useRef<SignatureCanvas>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const clearSignature = useCallback(() => {
-    sigRef.current?.clear();
-    onChange({ assinaturaDataUrl: "" });
-  }, [onChange]);
-
-  const saveSignature = useCallback(() => {
-    if (sigRef.current && !sigRef.current.isEmpty()) {
-      onChange({ assinaturaDataUrl: sigRef.current.toDataURL() });
-    }
-  }, [onChange]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0] || null;
@@ -96,37 +81,29 @@ const StepFinalizacao = ({ data, onChange }: Props) => {
         </div>
       </div>
 
-      {/* Assinatura */}
+      {/* Assinatura via GOV.BR */}
       <div className="space-y-3">
         <h3 className="text-lg font-semibold">Assinatura</h3>
-
-        <label className="flex items-center gap-3 mb-4">
-          <Checkbox
-            checked={data.assinaturaPosterior}
-            onCheckedChange={(c) => onChange({ assinaturaPosterior: !!c, assinaturaDataUrl: "" })}
-          />
-          <span className="text-sm">Assinar posteriormente via GOV.BR</span>
-        </label>
-
-        {!data.assinaturaPosterior && (
-          <div className="space-y-2">
-            <p className="text-sm text-muted-foreground">Desenhe sua assinatura abaixo:</p>
-            <div className="border border-border rounded-xl overflow-hidden bg-background">
-              <SignatureCanvas
-                ref={sigRef}
-                penColor="hsl(150, 30%, 12%)"
-                canvasProps={{
-                  className: "w-full",
-                  style: { width: "100%", height: "200px" },
-                }}
-                onEnd={saveSignature}
-              />
-            </div>
-            <Button type="button" variant="outline" size="sm" onClick={clearSignature} className="gap-2">
-              <Eraser size={14} /> Limpar
-            </Button>
-          </div>
-        )}
+        <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 text-center">
+          <ShieldCheck className="mx-auto mb-3 text-blue-600" size={40} />
+          <p className="text-blue-800 font-semibold text-base mb-2">
+            Assinatura Digital via GOV.BR
+          </p>
+          <p className="text-blue-600 text-sm leading-relaxed">
+            O PDF gerado conterá um espaço exclusivo para assinatura digital pela plataforma GOV.BR.
+            <br />
+            Após gerar o documento, acesse{" "}
+            <a
+              href="https://assinador.iti.br"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline font-semibold hover:text-blue-800 transition-colors"
+            >
+              assinador.iti.br
+            </a>{" "}
+            para assinar digitalmente.
+          </p>
+        </div>
       </div>
     </div>
   );

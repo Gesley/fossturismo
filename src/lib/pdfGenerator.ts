@@ -185,23 +185,24 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
   field("Placa", data.placa);
   field("Cor", data.corVeiculo);
 
-  // Assinatura
-  y += 6;
-  if (data.assinaturaDataUrl && !data.assinaturaPosterior) {
-    checkPage(40);
-    doc.text("Assinatura:", margin, y);
-    y += 4;
-    try {
-      doc.addImage(data.assinaturaDataUrl, "PNG", margin, y, 60, 25);
-    } catch {
-      // fallback
-    }
-    y += 30;
-  } else {
-    checkPage(20);
-    doc.text("Assinatura pelo GOV.BR: ___________________________________________", margin, y);
-    y += 10;
-  }
+  // Espaço para assinatura via GOV.BR
+  y += 10;
+  checkPage(40);
+  doc.setFont("helvetica", "bold");
+  doc.setFontSize(10);
+  doc.text("ASSINATURA DIGITAL (GOV.BR)", pageW / 2, y, { align: "center" });
+  y += 10;
+  
+  // Linha para assinatura
+  doc.setDrawColor(150, 150, 150);
+  doc.setLineWidth(0.3);
+  doc.line(margin, y, pageW - margin, y);
+  y += 5;
+  
+  doc.setFont("helvetica", "normal");
+  doc.setFontSize(8);
+  doc.text("Este documento deve ser assinado digitalmente via plataforma GOV.BR", pageW / 2, y, { align: "center" });
+  y += 10;
 
   // Lista de participantes
   if (data.participantes.some((p) => p.trim())) {

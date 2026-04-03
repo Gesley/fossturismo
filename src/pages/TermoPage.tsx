@@ -11,9 +11,9 @@ import StepGrupo from "@/components/form/StepGrupo";
 import StepFinalizacao from "@/components/form/StepFinalizacao";
 import { generateTermoPDF } from "@/lib/pdfGenerator";
 import { toast } from "sonner";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo-fazenda-guanabara.png";
 
-const STORAGE_KEY = "fossturismo-termo-draft";
+const STORAGE_KEY = "fazenda-guanabara-termo-draft";
 
 const steps = [
   { title: "Dados Pessoais", icon: "👤" },
@@ -78,10 +78,6 @@ const TermoPage = () => {
           toast.error("Preencha o nome e CPF do responsável.");
           return false;
         }
-        if (!formData.assinaturaPosterior && !formData.assinaturaDataUrl) {
-          toast.error("Assine o termo ou marque a opção de assinatura posterior via GOV.BR.");
-          return false;
-        }
         return true;
       default:
         return true;
@@ -104,7 +100,7 @@ const TermoPage = () => {
       const pdf = generateTermoPDF(formData);
       const dateStr = formData.dataFinal.replace(/-/g, "");
       const nameSlug = formData.nomeCompleto.toLowerCase().replace(/\s+/g, "-").replace(/[^a-z-]/g, "");
-      pdf.save(`termo-fossturismo-${nameSlug}-${dateStr}.pdf`);
+      pdf.save(`termo-fazenda-guanabara-${nameSlug}-${dateStr}.pdf`);
       toast.success("PDF gerado com sucesso!");
       localStorage.removeItem(STORAGE_KEY);
     } catch (err) {
@@ -119,8 +115,8 @@ const TermoPage = () => {
       <header className="border-b border-border bg-card/80 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between">
           <button onClick={() => navigate("/")} className="flex items-center gap-2 text-foreground hover:text-primary transition-colors">
-            <img src={logo} alt="FossTurismo" className="w-8 h-8 object-contain" />
-            <span className="font-display font-semibold">FossTurismo</span>
+            <img src={logo} alt="Fazenda Guanabara" className="w-8 h-8 object-contain rounded" />
+            <span className="font-display font-semibold">Fazenda Guanabara</span>
           </button>
           <span className="text-sm text-muted-foreground">Termo de Responsabilidade</span>
         </div>
