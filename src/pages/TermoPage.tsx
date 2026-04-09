@@ -67,12 +67,20 @@ const TermoPage = () => {
           return false;
         }
         return true;
-      case 3:
+      case 3: {
         if (!formData.dataAcesso || formData.quantidadePessoas < 1) {
           toast.error("Preencha a data e quantidade de pessoas.");
           return false;
         }
+        const participantesPreenchidos = formData.participantes.filter((p) => p.trim().length > 0).length;
+        if (participantesPreenchidos !== formData.quantidadePessoas) {
+          toast.error(
+            `A quantidade de pessoas (${formData.quantidadePessoas}) deve ser igual ao número de participantes do grupo com nome preenchido (${participantesPreenchidos}).`
+          );
+          return false;
+        }
         return true;
+      }
       case 4:
         if (!formData.nomeResponsavel || !formData.cpfResponsavel) {
           toast.error("Preencha o nome e CPF do responsável.");

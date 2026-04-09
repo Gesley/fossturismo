@@ -21,7 +21,9 @@ const StepGrupo = ({ data, onChange }: Props) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-display font-bold text-gradient-nature">Dados do Grupo</h2>
-      <p className="text-muted-foreground">Informe os dados do grupo que acessará a propriedade.</p>
+      <p className="text-muted-foreground">
+        Informe os dados do grupo que acessará a propriedade. A quantidade de pessoas deve coincidir com o número de nomes preenchidos em Participantes do Grupo.
+      </p>
 
       <div className="grid md:grid-cols-2 gap-4">
         <div>

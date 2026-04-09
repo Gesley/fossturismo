@@ -20,7 +20,9 @@ const StepDadosPessoais = ({ data, onChange }: Props) => {
   return (
     <div className="space-y-6">
       <h2 className="text-2xl font-display font-bold text-gradient-nature">Dados Pessoais</h2>
-      <p className="text-muted-foreground">Preencha seus dados para o termo de responsabilidade.</p>
+      <p className="text-muted-foreground">
+        Preencha seus dados no termo de responsabilidade — Individual ou Coletiva (Gestão de um grupo).
+      </p>
 
       <div className="grid md:grid-cols-2 gap-4">
         <div className="md:col-span-2">

@@ -16,13 +16,13 @@ const termoTexto = `Declaro estar plenamente ciente de que as atividades pratica
 • Terrenos irregulares, declives, cânions e cachoeiras;
 • Risco de lesões graves ou morte.
 
-Reconheço que tais riscos fazem parte da atividade e assumo integralmente suas consequências.`;
+Reconheço que tais riscos fazem parte da atividade e assumo integralmente suas consequências e responsabilidades individuais e com o Grupo.`;
 
 const capacidadeTexto = `Declaro que possuo plena capacidade física, técnica e psicológica para a prática da atividade escolhida, bem como conhecimento suficiente para avaliar os riscos envolvidos.
 
 Caso esteja conduzindo grupo, declaro ser plenamente responsável pela orientação, segurança e conduta de todos os participantes.`;
 
-const equipamentosTexto = `Declaro que TODOS os equipamentos utilizados para a prática do esporte são de minha responsabilidade, encontram-se em perfeitas condições de uso e foram previamente verificados, inexistindo qualquer obrigação do proprietário e/ou seu representante legal quanto à sua segurança.`;
+const equipamentosTexto = `Declaro que TODOS os equipamentos utilizados para a prática (individual ou coletiva) do esporte são de minha responsabilidade, encontram-se em perfeitas condições de uso e foram previamente verificados, inexistindo qualquer obrigação do proprietário e/ou seu representante legal quanto à sua segurança.`;
 
 const condutaTexto = `Comprometo-me a:
 a) Não descartar lixo ou resíduos, devendo recolhê-los e levá-los consigo;
@@ -45,11 +45,11 @@ const isencaoTexto = `Declaro que, de forma livre e consciente:
 const sections = [
   { key: "aceitaRiscos" as const, title: "2. Ciência dos Riscos", text: termoTexto, label: "Declaro que li e aceito os riscos descritos acima" },
   { key: "aceitaCapacidade" as const, title: "3. Capacidade Técnica", text: capacidadeTexto, label: "Declaro que tenho capacidade física e técnica" },
-  { key: "aceitaEquipamentos" as const, title: "5. Equipamentos", text: equipamentosTexto, label: "Confirmo responsabilidade pelos equipamentos" },
-  { key: "aceitaConduta" as const, title: "6. Normas de Conduta", text: condutaTexto, label: "Aceito todas as normas de conduta" },
-  { key: "aceitaResponsabilidade" as const, title: "7. Responsabilidade por Danos", text: responsabilidadeTexto, label: "Confirmo ciência das responsabilidades legais" },
-  { key: "aceitaDespesas" as const, title: "8. Despesas Médicas e Resgate", text: despesasTexto, label: "Aceito responsabilidade por despesas médicas" },
-  { key: "aceitaIsencao" as const, title: "9. Isenção e Renúncia Parcial", text: isencaoTexto, label: "Aceito a isenção de responsabilidade descrita" },
+  { key: "aceitaEquipamentos" as const, title: "4. Equipamentos", text: equipamentosTexto, label: "Confirmo responsabilidade pelos equipamentos" },
+  { key: "aceitaConduta" as const, title: "5. Normas de Conduta", text: condutaTexto, label: "Aceito todas as normas de conduta" },
+  { key: "aceitaResponsabilidade" as const, title: "6. Responsabilidade por Danos", text: responsabilidadeTexto, label: "Confirmo ciência das responsabilidades legais" },
+  { key: "aceitaDespesas" as const, title: "7. Despesas Médicas e Resgate", text: despesasTexto, label: "Aceito responsabilidade por despesas médicas" },
+  { key: "aceitaIsencao" as const, title: "8. Isenção e Renúncia Parcial", text: isencaoTexto, label: "Aceito a isenção de responsabilidade descrita" },
 ];
 
 const StepTermoAceites = ({ data, onChange }: Props) => {

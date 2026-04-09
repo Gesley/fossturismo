@@ -115,7 +115,7 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
   ]) {
     bullet(r);
   }
-  paragraph("Reconheço que tais riscos fazem parte da atividade e assumo integralmente suas consequências.");
+  paragraph("Reconheço que tais riscos fazem parte da atividade e assumo integralmente suas consequências e responsabilidades individuais e com o Grupo.");
 
   // 3. DA CAPACIDADE TÉCNICA
   sectionTitle("3. DA CAPACIDADE TÉCNICA");
@@ -123,7 +123,7 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
   paragraph("Caso esteja conduzindo grupo, declaro ser plenamente responsável pela orientação, segurança e conduta de todos os participantes.");
 
   if (data.isFederado) {
-    paragraph("Se canoísta FEDERADO:");
+    paragraph("Se canionista FEDERADO:");
     field("Número", data.numeroFederacao);
     field("UF", data.ufFederacao);
   }
@@ -151,7 +151,7 @@ export function generateTermoPDF(data: TermFormData): jsPDF {
 
   // 5. DOS EQUIPAMENTOS
   sectionTitle("5. DOS EQUIPAMENTOS");
-  paragraph("Declaro que TODOS os equipamentos utilizados para a prática do esporte são de minha responsabilidade, encontram-se em perfeitas condições de uso e foram previamente verificados, inexistindo qualquer obrigação do proprietário e/ou seu representante legal quanto à sua segurança.");
+  paragraph("Declaro que TODOS os equipamentos utilizados para a prática (individual ou coletiva) do esporte são de minha responsabilidade, encontram-se em perfeitas condições de uso e foram previamente verificados, inexistindo qualquer obrigação do proprietário e/ou seu representante legal quanto à sua segurança.");
 
   // 6. DAS NORMAS DE CONDUTA
   sectionTitle("6. DAS NORMAS DE CONDUTA");

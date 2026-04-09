@@ -60,7 +60,7 @@ const StepAtividade = ({ data, onChange }: Props) => {
       <div className="border-t border-border pt-6 mt-6">
         <label className="flex items-center gap-3 mb-4">
           <Checkbox checked={data.isFederado} onCheckedChange={(c) => onChange({ isFederado: !!c })} />
-          <span className="font-medium">Sou canoísta federado</span>
+          <span className="font-medium">Sou canionista federado</span>
         </label>
         {data.isFederado && (
           <div className="grid md:grid-cols-2 gap-4 pl-8">

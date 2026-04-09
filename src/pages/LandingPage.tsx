@@ -10,9 +10,21 @@ import fotoCachoeira from "@/assets/foto-cachoeira.jpg";
 import fotoPaisagem from "@/assets/foto-paisagem.png";
 
 const activities = [
-  { icon: Mountain, title: "Canyon Canabrava", desc: "Formações rochosas impressionantes e vistas de tirar o fôlego" },
-  { icon: TreePine, title: "Trilhas", desc: "Caminhos pela mata nativa preservada em meio a paisagens únicas" },
-  { icon: Waves, title: "Cachoeiras", desc: "Banhos em quedas d'água cristalinas cercadas pela natureza" },
+  {
+    icon: Mountain,
+    title: "Canyon Canabrava",
+    desc: "Formações rochosas íngremes e verticalizados proporcionando uma vista de tirar o fôlego!",
+  },
+  {
+    icon: TreePine,
+    title: "Trilhas",
+    desc: "Caminhos pela Serra Miguel Inácio em meio a natureza com paisagens únicas.",
+  },
+  {
+    icon: Waves,
+    title: "Cachoeiras",
+    desc: "Com suas quedas de águas cristalinas cercadas pela natureza formam uma belíssima paisagem.",
+  },
   { icon: Sun, title: "Pôr do Sol", desc: "Vistas panorâmicas deslumbrantes ao entardecer" },
 ];
 
@@ -75,7 +87,7 @@ const LandingPage = () => {
           >
             Turismo de aventura em meio a uma natureza esplêndida!
             <br />
-            <span className="text-primary-foreground/70 text-lg">Trilhas, cachoeira e o Canyon Canabrava!!</span>
+            <span className="text-primary-foreground/70 text-lg">Trilhas, cachoeiras e o Canyon Canabrava!!</span>
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row gap-4 justify-center"
@@ -237,8 +249,8 @@ const LandingPage = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
               >
-                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-nature flex items-center justify-center">
-                  <act.icon className="text-primary-foreground" size={28} />
+                <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-nature flex items-center justify-center shadow-sm">
+                  <act.icon className="text-primary-foreground" size={28} strokeWidth={1.75} />
                 </div>
                 <h3 className="text-xl font-display font-semibold mb-2">{act.title}</h3>
                 <p className="text-muted-foreground text-sm">{act.desc}</p>
